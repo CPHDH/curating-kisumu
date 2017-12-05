@@ -135,11 +135,11 @@ function sepal_and_seed_scripts_and_styles() {
 
     // comment reply script for threaded comments
     if ( is_singular() AND comments_open() AND (get_option('thread_comments') == 1)) {
-		  wp_enqueue_script( 'comment-reply' );
+		  //wp_enqueue_script( 'comment-reply' );
     }
 
 		//adding scripts file in the footer
-		// wp_register_script( 'sepal-and-seed-js', get_stylesheet_directory_uri() . '/library/js/scripts.js', '', '', true );
+		wp_register_script( 'sepal-and-seed-js', get_stylesheet_directory_uri() . '/library/js/scripts.js', '', '', true );
 
 		// enqueue styles and scripts
 		wp_enqueue_script( 'sepal-and-seed-modernizr' );
@@ -153,7 +153,7 @@ function sepal_and_seed_scripts_and_styles() {
 		using the google cdn. That way it stays cached
 		and your site will load faster.
 		*/
-		wp_enqueue_script( 'jquery' );
+		//wp_enqueue_script( 'jquery' );
 		wp_enqueue_script( 'sepal-and-seed-js' );
 
 	}
@@ -177,7 +177,7 @@ function sepal_and_seed_theme_support() {
 	    array(
 	    'default-image' => '',    // background image default
 	    'default-color' => '',    // background color default (dont add the #)
-	    'wp-head-callback' => '_custom_background_cb',
+	    'wp-head-callback' => 'erin_custom_background_cb',
 	    'admin-head-callback' => '',
 	    'admin-preview-callback' => ''
 	    )
