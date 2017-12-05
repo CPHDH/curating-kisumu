@@ -138,7 +138,7 @@ you like.
 
 // Custom Backend Footer
 function sepal_and_seed_custom_admin_footer() {
-	_e( '<span id="footer-thankyou">Developed by <a href="http://yoursite.com" target="_blank">Your Site Name</a></span>. Built using <a href="https://sepalandseed.com/" target="_blank">Sepal and Seed</a>.', 'sepalandseedtheme' );
+	_e( '<span id="footer-thankyou">Developed by <a href="http://csudigitalhumanities.org" target="_blank">Center for Public History + Digital Humanities</a></span>. Built using <a href="https://sepalandseed.com/" target="_blank">Sepal and Seed</a>.', 'sepalandseedtheme' );
 }
 
 // adding it to the admin area

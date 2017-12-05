@@ -20,12 +20,12 @@
 							)); ?>
 							<div class="colophon">
 								<div class="social">
-									<i class="icon-twitter"></i>
-									<i class="icon-facebook"></i>
-									<i class="icon-gplus"></i>
+									<a target="_blank" href="https://twitter.com/curatingkisumu"><i class="icon-twitter"></i></a>
+									<a target="_blank" href="https://www.facebook.com/curatingkisumu/"><i class="icon-facebook"></i></a>
+									<a target="_blank" href="https://www.youtube.com/channel/UCiHA8Vz7Cwlpdy7KkZLXCKw"><i class="icon-youtube-play"></i></a>
 								</div>
 								<div>
-									<p class="source-org copyright">&copy; <?php echo date('Y'); ?> <?php bloginfo( 'name' ); ?>.</p>
+									<p class="source-org copyright"><em>&copy; <?php echo date('Y'); ?> <?php bloginfo( 'name' ); ?>.</em></p>
 								</div>
 							</div>
 						</nav>
