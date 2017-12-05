@@ -61,7 +61,7 @@
 
                 <footer class="article-footer">
 
-                  <?php printf( __( 'filed under', 'sepalandseedtheme' ).': %1$s', get_the_category_list(', ') ); ?>
+                  <?php if (get_the_category_list()) printf( __( 'filed under', 'sepalandseedtheme' ).': %1$s', get_the_category_list(', ') ); ?>
 
                   <?php the_tags( '<p class="tags"><span class="tags-title">' . __( 'Tags:', 'sepalandseedtheme' ) . '</span> ', ', ', '</p>' ); ?>
 

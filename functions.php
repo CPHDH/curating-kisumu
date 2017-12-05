@@ -477,11 +477,6 @@ require_once( 'library/class-custom-recent-posts-widget.php' );
 
 add_action( 'widgets_init', create_function( '', 'register_widget( "Custom_Widget_Recent_Posts" );' ) );
 
-/************* Remove comment reply.js *************/
-function clean_header(){
-  wp_deregister_script( 'comment-reply' );
-}
-add_action('init','clean_header');
 function erin_custom_background_cb() {
     // $background is the saved custom image, or the default image.
     $background = set_url_scheme( get_background_image() );
@@ -572,11 +567,7 @@ function erin_custom_background_cb() {
 	}
 </script>
 
-/************* Remove jQuery *************/
-function wpdocs_dequeue_script() {
-        if ( !is_admin() ) wp_deregister_script('jquery');
+<?php
 }
-add_action( 'wp_print_scripts', 'wpdocs_dequeue_script', 100 );
-
 
 /* DON'T DELETE THIS CLOSING TAG */ ?>

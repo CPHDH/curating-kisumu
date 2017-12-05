@@ -1,7 +1,7 @@
 #SEPAL AND SEED
 /* 0.1 release */
 
-Throwing it out there...
+Throwing it out there
 
 # BONES CHANGE LOG & HISTORY
 
@@ -149,10 +149,10 @@ Author: Eddie Machado
 - removed DOMAssistant for ancient IE users
 - removed flowplayer folder (lighten the load)
 - remove ie folder for IE scripts that are now gone
-- moved translation function to bones.php
+- moved translation function to sepal-and-seed.php
 - removed overflow: hidden from some comment styles
 - cleaned up head with more removals
-- moved related posts & page navi plugin to bones.php
+- moved related posts & page navi plugin to sepal-and-seed.php
 - removing wp version from rss feed
 - removing useless wordpress dashboard widgets
 - organizing bones & functions for simplicity
@@ -207,7 +207,7 @@ Author: Eddie Machado
 - added browser classes to style.css
 - removed lazy load (sorry, it sucked)
 - added twitter and facebook user profiles
-- added post formats to bones.php core
+- added post formats to sepal-and-seed.php core
 - fixed menu system (thanks to Dom & Mattias)
 - added categories & tag info for custom post types
 - adding standard categories & tags to custom post type example
@@ -226,7 +226,7 @@ Author: Eddie Machado
 - bloginfo('url') in header replaced with echo home_url()
 - using get_template_directory_uri() instead of bloginfo('template_directory')
 - using get_the_author_meta('display_name') instead of deprecated function
-- fixed error in bones.php for menu fallback **thanks Mark**
+- fixed error in sepal-and-seed.php for menu fallback **thanks Mark**
 - creating thumbnail fallback functions
 - added header.js and moved modernizr & imgsizer in that file
 - added lazy load jquery plugin
