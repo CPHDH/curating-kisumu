@@ -63,10 +63,31 @@
 
 							<section class="entry-content">
 								<?php the_excerpt(); ?>
-
+								<?php // theme support for "authors" custom field
+								if ( $string=get_post_meta(get_the_ID(), 'authors', true) ) {
+								$auth=wp_kses($string,array(
+									'a' => array(
+										'href' => array(),
+										'title' => array()),
+								    'em' => array(),
+								    'strong' => array(),
+								    'b' => array(),
+								    'i' => array(),
+								    )
+								);
+								} else {
+								$auth=get_the_author_link( get_the_author_meta( 'ID' ) );
+								}
+								?>
+								
+								
 								<p class="byline entry-meta vcard">
-   								<time class="updated entry-time" datetime="<?php get_the_time('Y-m-d'); ?>" itemprop="datePublished"><i class="icon-clock"></i><?php the_time(get_option('date_format')); ?></time>
-   								<span itemprop="interactionCount" itemscope itemptype="http://schema.org/commentCount"><i class="icon-comment-empty"></i><?php comments_number( '', '1 comment', '% comments' ); ?></span>
+								<?php printf( __( 'Posted %1$s by %2$s', 'sepalandseedtheme' ),
+									/* the time the post was published */
+									'<time class="updated entry-time" datetime="' . get_the_time('Y-m-d') . '" itemprop="datePublished">' . get_the_time(get_option('date_format')) . '</time>',
+									/* the author of the post */
+									'<span class="entry-author author" itemprop="author" itemscope itemptype="http://schema.org/Person">' . $auth . '</span>'
+								); ?>
 								</p>
 							</section>
 

@@ -16,11 +16,27 @@
 									<h2 class="search-title entry-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
 
                   						<p class="byline entry-meta vcard">
+										<?php // theme support for "authors" custom field
+										if ( $string=get_post_meta(get_the_ID(), 'authors', true) ) {
+										$auth=wp_kses($string,array(
+											'a' => array(
+												'href' => array(),
+												'title' => array()),
+										    'em' => array(),
+										    'strong' => array(),
+										    'b' => array(),
+										    'i' => array(),
+										    )
+										);
+										} else {
+										$auth=get_the_author_link( get_the_author_meta( 'ID' ) );
+										}
+										?>	                  						
                     							<?php printf( __( 'Posted %1$s by %2$s', 'sepalandseedtheme' ),
                    							    /* the time the post was published */
                    							    '<time class="updated entry-time" datetime="' . get_the_time('Y-m-d') . '" itemprop="datePublished">' . get_the_time(get_option('date_format')) . '</time>',
                       							    /* the author of the post */
-                       							    '<span class="by">by</span> <span class="entry-author author" itemprop="author" itemscope itemptype="http://schema.org/Person">' . get_the_author_link( get_the_author_meta( 'ID' ) ) . '</span>'
+                       							    '<span class="entry-author author" itemprop="author" itemscope itemptype="http://schema.org/Person">' . $auth . '</span>'
                     							); ?>
                   						</p>
 
