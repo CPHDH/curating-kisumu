@@ -2,70 +2,63 @@
 
 			<div id="content">
 
-				<div id="inner-content" class="wrap row">
+				<div id="inner-content">
 
-						<main id="main" class="col-xs-12 col-sm-8 col-md-8 col-lg-8" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/Blog">
+						<main id="main" class="results" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/Blog">
 
-							<h1 class="archive-title h2"><?php post_type_archive_title(); ?></h1>
+							<h1 class="archive-title">Archive</h1>
 
-							<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+							<div class="container">
 
-							<article id="post-<?php the_ID(); ?>" <?php post_class( 'cf' ); ?> role="article">
+								<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-								<header class="entry-header article-header">
+								<article id="post-<?php the_ID(); ?>" <?php post_class( 'cf' ); ?> role="article">
 
-									<h2 class="search-title entry-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
+									<header class="entry-header article-header">
 
-								</header>
+										<h3 class="search-title entry-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
 
-								<section class="entry-content">
-									<?php the_excerpt( '<span class="read-more">' . __( 'Read more &raquo;', 'sepalandseedtheme' ) . '</span>' ); ?>
-									<p class="byline entry-meta vcard">
-											<?php printf( __( 'Posted %1$s by %2$s', 'sepalandseedtheme' ),
-												/* the time the post was published */
-												'<time class="updated entry-time" datetime="' . get_the_time('Y-m-d') . '" itemprop="datePublished">' . get_the_time(get_option('date_format')) . '</time>',
-														/* the author of the post */
-														'<span class="entry-author author" itemprop="author" itemscope itemptype="http://schema.org/Person">' . get_the_author_link( get_the_author_meta( 'ID' ) ) . '</span>'
-											); ?>
-									</p>
-								</section>
+									</header>
 
-								<footer class="article-footer">
+									<section class="entry-content">
+										<?php the_excerpt( '<span class="read-more">' . __( 'Read more &raquo;', 'sepalandseedtheme' ) . '</span>' ); ?>
+										<p class="byline entry-meta vcard">
+												<?php printf( __( 'Posted %1$s by %2$s', 'sepalandseedtheme' ),
+													/* the time the post was published */
+													'<time class="updated entry-time" datetime="' . get_the_time('Y-m-d') . '" itemprop="datePublished">' . get_the_time(get_option('date_format')) . '</time>',
+															/* the author of the post */
+															'<span class="entry-author author" itemprop="author" itemscope itemptype="http://schema.org/Person">' . get_the_author_link( get_the_author_meta( 'ID' ) ) . '</span>'
+												); ?>
+										</p>
+									</section>
 
-									<?php if(get_the_category_list(', ') != ''): ?>
-														<?php printf( __( 'Filed under: %1$s', 'sepalandseedtheme' ), get_the_category_list(', ') ); ?>
-														<?php endif; ?>
+									<footer class="article-footer">
 
-													<?php the_tags( '<p class="tags"><span class="tags-title">' . __( 'Tags:', 'sepalandseedtheme' ) . '</span> ', ', ', '</p>' ); ?>
+									</footer> <!-- end article footer -->
+								</article>
 
-								</footer> <!-- end article footer -->
-							</article>
+								<?php endwhile; ?>
 
-							<?php endwhile; ?>
+										<?php sepal_and_seed_page_navi(); ?>
 
-									<?php sepal_and_seed_page_navi(); ?>
+								<?php else : ?>
 
-							<?php else : ?>
+										<article id="post-not-found" class="hentry cf">
+											<header class="article-header">
+												<h1><?php _e( 'Oops, Post Not Found!', 'sepalandseedtheme' ); ?></h1>
+											</header>
+											<section class="entry-content">
+												<p><?php _e( 'Uh Oh. Something is missing. Try double checking things.', 'sepalandseedtheme' ); ?></p>
+											</section>
+											<footer class="article-footer">
+													<p><?php _e( 'This is the error message in the archive.php template.', 'sepalandseedtheme' ); ?></p>
+											</footer>
+										</article>
 
-									<article id="post-not-found" class="hentry cf">
-										<header class="article-header">
-											<h1><?php _e( 'Oops, Post Not Found!', 'sepalandseedtheme' ); ?></h1>
-										</header>
-										<section class="entry-content">
-											<p><?php _e( 'Uh Oh. Something is missing. Try double checking things.', 'sepalandseedtheme' ); ?></p>
-										</section>
-										<footer class="article-footer">
-												<p><?php _e( 'This is the error message in the archive.php template.', 'sepalandseedtheme' ); ?></p>
-										</footer>
-									</article>
-
-							<?php endif; ?>
+								<?php endif; ?>
+							</div>
 
 						</main>
-
-						<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-							<?php get_sidebar(); ?>
-						</div>
 
 				</div>
 

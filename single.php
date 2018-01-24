@@ -1,29 +1,58 @@
 <?php get_header(); ?>
 
-			<div id="content">
+			<div id="content" >
 
-				<div id="inner-content" class="wrap row">
+				<div id="inner-content">
 
-						<main id="main" class="col-xs-12 col-sm-8 col-md-8 col-lg-8" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/Blog">
+						<main id="main" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/Blog">
 
 							<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-									<?php
-										/*
-										 * Ah, post formats. Nature's greatest mystery (aside from the sloth).
-										 *
-										 * So this function will bring in the needed template file depending on what the post
-										 * format is. The different post formats are located in the post-formats folder.
-										 *
-										 *
-										 * REMEMBER TO ALWAYS HAVE A DEFAULT ONE NAMED "format.php" FOR POSTS THAT AREN'T
-										 * A SPECIFIC POST FORMAT.
-										 *
-										 * If you want to remove post formats, just delete the post-formats folder and
-										 * replace the function below with the contents of the "format.php" file.
-										*/
-										get_template_part( 'post-formats/format', get_post_format() );
-									?>
+								<article data-image="<?php echo has_post_thumbnail() ? the_post_thumbnail_url( 'large' ) : null;?>" id="post-<?php the_ID(); ?>" <?php post_class('cf'); ?> role="article" itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
+
+								    <header class="article-header entry-header">
+
+								      <h1 class="entry-title single-title" itemprop="headline" rel="bookmark"><?php the_title(); ?></h1>
+
+								      <p class="byline entry-meta vcard">
+								        <?php // theme support for "authors" custom field
+								        if ( $string=get_post_meta(get_the_ID(), 'authors', true) ) {
+									        $auth=wp_kses($string,array(
+										        'a' => array(
+										        'href' => array(),
+										        'title' => array()),
+										        'em' => array(),
+										        'strong' => array(),
+										        'b' => array(),
+										        'i' => array(),
+									        	)
+									        );
+								        } else {
+								        	$auth=get_the_author_link( get_the_author_meta( 'ID' ) );
+								        }
+								        ?>
+								        <?php printf( __( 'Posted', 'sepalandseedtheme' ).' %1$s %2$s',
+								            /* the time the post was published */
+								            '<time class="updated entry-time" datetime="' . get_the_time('Y-m-d') . '" itemprop="datePublished">' . get_the_time(get_option('date_format')) . '</time>',
+								            /* the author of the post */
+								            '<span class="by">'.__( 'by', 'sepalandseedtheme' ).'</span> <span class="entry-author author" itemprop="author" itemscope itemptype="http://schema.org/Person">' . $auth . '</span>'
+								        ); ?>
+								      </p>
+								    </header> <?php // end article header ?>
+
+								    <div class="container">
+
+								      <section class="entry-content" itemprop="articleBody">
+								        <?php the_content(); ?>
+								      </section>
+
+								      <footer class="article-footer">
+								        <?php the_tags( '<!--h2 class="curatescape-section-heading curatescape-section-heading-related-resources">Tags</h2--><ul class="tags"><li class="button">', '</li><li class="button">', '</li></ul>' ); ?>
+								      </footer>
+
+								    </div>
+
+								</article> <?php // end article ?>
 
 							<?php endwhile; ?>
 
@@ -45,8 +74,8 @@
 
 						</main>
 
-						<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-							<?php get_sidebar(); ?>
+						<div class="comments-outer">
+							<?php comments_template(); ?>
 						</div>
 
 				</div>

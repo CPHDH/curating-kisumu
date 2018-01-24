@@ -17,7 +17,7 @@
 
 <?php get_header(); ?>
 
-			<div id="content">
+			<div id="content" class="container">
 
 				<div id="inner-content" class="wrap row">
 
@@ -91,9 +91,6 @@
 
 						</main>
 
-						<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-							<?php get_sidebar(); ?>
-						</div>
 
 				</div>
 

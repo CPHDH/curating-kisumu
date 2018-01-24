@@ -4,86 +4,85 @@
 
 				<div id="inner-content" class="wrap row">
 
-					<main id="main" class="col-xs-12 col-sm-8 col-md-8 col-lg-8" role="main">
+					<main id="main" class="results" role="main">
+
 						<h1 class="archive-title"><span><?php _e( 'Search Results for:', 'sepalandseedtheme' ); ?></span> <?php echo esc_attr(get_search_query()); ?></h1>
 
-						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+						<div class="container">
 
-							<article id="post-<?php the_ID(); ?>" <?php post_class('cf'); ?> role="article">
+							<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-								<header class="entry-header article-header">
+								<article id="post-<?php the_ID(); ?>" <?php post_class('cf'); ?> role="article">
 
-									<h2 class="search-title entry-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
+									<header class="entry-header article-header">
 
-                  						<p class="byline entry-meta vcard">
-										<?php // theme support for "authors" custom field
-										if ( $string=get_post_meta(get_the_ID(), 'authors', true) ) {
-										$auth=wp_kses($string,array(
-											'a' => array(
-												'href' => array(),
-												'title' => array()),
-										    'em' => array(),
-										    'strong' => array(),
-										    'b' => array(),
-										    'i' => array(),
-										    )
-										);
-										} else {
-										$auth=get_the_author_link( get_the_author_meta( 'ID' ) );
-										}
-										?>	                  						
-                    							<?php printf( __( 'Posted %1$s by %2$s', 'sepalandseedtheme' ),
-                   							    /* the time the post was published */
-                   							    '<time class="updated entry-time" datetime="' . get_the_time('Y-m-d') . '" itemprop="datePublished">' . get_the_time(get_option('date_format')) . '</time>',
-                      							    /* the author of the post */
-                       							    '<span class="entry-author author" itemprop="author" itemscope itemptype="http://schema.org/Person">' . $auth . '</span>'
-                    							); ?>
-                  						</p>
+										<h3 class="search-title entry-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
 
-								</header>
+	                  						<p class="byline entry-meta vcard">
+											<?php // theme support for "authors" custom field
+											if ( $string=get_post_meta(get_the_ID(), 'authors', true) ) {
+											$auth=wp_kses($string,array(
+												'a' => array(
+													'href' => array(),
+													'title' => array()),
+											    'em' => array(),
+											    'strong' => array(),
+											    'b' => array(),
+											    'i' => array(),
+											    )
+											);
+											} else {
+											$auth=get_the_author_link( get_the_author_meta( 'ID' ) );
+											}
+											?>
+	                    							<?php printf( __( 'Posted %1$s by %2$s', 'sepalandseedtheme' ),
+	                   							    /* the time the post was published */
+	                   							    '<time class="updated entry-time" datetime="' . get_the_time('Y-m-d') . '" itemprop="datePublished">' . get_the_time(get_option('date_format')) . '</time>',
+	                      							    /* the author of the post */
+	                       							    '<span class="entry-author author" itemprop="author" itemscope itemptype="http://schema.org/Person">' . $auth . '</span>'
+	                    							); ?>
+	                  						</p>
 
-								<section class="entry-content">
-										<?php the_excerpt( '<span class="read-more">' . __( 'Read more &raquo;', 'sepalandseedtheme' ) . '</span>' ); ?>
+									</header>
 
-								</section>
+									<section class="entry-content">
+											<?php the_excerpt( '<span class="read-more">' . __( 'Read more &raquo;', 'sepalandseedtheme' ) . '</span>' ); ?>
 
-								<footer class="article-footer">
+									</section>
 
-									<?php if(get_the_category_list(', ') != ''): ?>
-                  					<?php printf( __( 'Filed under: %1$s', 'sepalandseedtheme' ), get_the_category_list(', ') ); ?>
-                  					<?php endif; ?>
+									<footer class="article-footer">
 
-                 					<?php the_tags( '<p class="tags"><span class="tags-title">' . __( 'Tags:', 'sepalandseedtheme' ) . '</span> ', ', ', '</p>' ); ?>
+										<?php if(get_the_category_list(', ') != ''): ?>
+	                  					<?php printf( __( 'Filed under: %1$s', 'sepalandseedtheme' ), get_the_category_list(', ') ); ?>
+	                  					<?php endif; ?>
 
-								</footer> <!-- end article footer -->
+	                 					<?php the_tags( '<p class="tags"><span class="tags-title">' . __( 'Tags:', 'sepalandseedtheme' ) . '</span> ', ', ', '</p>' ); ?>
 
-							</article>
+									</footer> <!-- end article footer -->
 
-						<?php endwhile; ?>
+								</article>
 
-								<?php sepal_and_seed_page_navi(); ?>
+							<?php endwhile; ?>
 
-							<?php else : ?>
+									<?php sepal_and_seed_page_navi(); ?>
 
-									<article id="post-not-found" class="hentry cf">
-										<header class="article-header">
-											<h1><?php _e( 'Sorry, No Results.', 'sepalandseedtheme' ); ?></h1>
-										</header>
-										<section class="entry-content">
-											<p><?php _e( 'Try your search again.', 'sepalandseedtheme' ); ?></p>
-										</section>
-										<footer class="article-footer">
-												<p><?php _e( 'This is the error message in the search.php template.', 'sepalandseedtheme' ); ?></p>
-										</footer>
-									</article>
+								<?php else : ?>
 
-							<?php endif; ?>
+										<article id="post-not-found" class="hentry cf">
+											<header class="article-header">
+												<h3><?php _e( 'Sorry, No Results.', 'sepalandseedtheme' ); ?></h3>
+											</header>
+											<section class="entry-content">
+												<p><?php _e( 'Try your search again.', 'sepalandseedtheme' ); ?></p>
+											</section>
+											<footer class="article-footer">
+													<p><?php _e( 'This is the error message in the search.php template.', 'sepalandseedtheme' ); ?></p>
+											</footer>
+										</article>
 
+								<?php endif; ?>
+							</div>
 						</main>
-
-						<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-							<?php get_sidebar(); ?>
-						</div>
 
 					</div>
 

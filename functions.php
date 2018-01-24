@@ -121,8 +121,8 @@ if ( ! isset( $content_width ) ) {
 /************* THUMBNAIL SIZE OPTIONS *************/
 
 // Thumbnail sizes
-add_image_size( 'sepal-and-seed-thumb-600', 600, 150, true );
-add_image_size( 'sepal-and-seed-thumb-300', 300, 100, true );
+add_image_size( 'sepal-and-seed-thumb-600', 600, 600, true );
+add_image_size( 'sepal-and-seed-thumb-300', 300, 300, true );
 
 /************* Add Title Tag Support *************/
 add_theme_support( 'title-tag' );
@@ -151,8 +151,8 @@ add_filter( 'image_size_names_choose', 'sepal_and_seed_custom_image_sizes' );
 
 function sepal_and_seed_custom_image_sizes( $sizes ) {
     return array_merge( $sizes, array(
-        'sepal-and-seed-thumb-600' => __('600px by 150px', 'sepalandseedtheme'),
-        'sepal-and-seed-thumb-300' => __('300px by 100px', 'sepalandseedtheme'),
+        'sepal-and-seed-thumb-600' => __('600px by 600px', 'sepalandseedtheme'),
+        'sepal-and-seed-thumb-300' => __('300px by 300px', 'sepalandseedtheme'),
     ) );
 }
 
@@ -205,15 +205,15 @@ add_action( 'customize_register', 'sepal_and_seed_theme_customizer' );
 
 // Sidebars & Widgetizes Areas
 function sepal_and_seed_register_sidebars() {
-	register_sidebar(array(
-		'id' => 'sidebar1',
-		'name' => __( 'Sidebar 1', 'sepalandseedtheme' ),
-		'description' => __( 'The first (primary) sidebar.', 'sepalandseedtheme' ),
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-		'before_title' => '<h4 class="widgettitle">',
-		'after_title' => '</h4>',
-	));
+	// register_sidebar(array(
+	// 	'id' => 'sidebar1',
+	// 	'name' => __( 'Sidebar 1', 'sepalandseedtheme' ),
+	// 	'description' => __( 'The first (primary) sidebar.', 'sepalandseedtheme' ),
+	// 	'before_widget' => '<div id="%1$s" class="widget %2$s">',
+	// 	'after_widget' => '</div>',
+	// 	'before_title' => '<h4 class="widgettitle">',
+	// 	'after_title' => '</h4>',
+	// ));
 
 	/*
 	to add more sidebars or widgetized areas, just copy
@@ -250,16 +250,8 @@ function sepal_and_seed_comments( $comment, $args, $depth ) {
   <div id="comment-<?php comment_ID(); ?>" <?php comment_class('cf'); ?>>
     <article  class="cf">
       <header class="comment-author vcard">
-        <?php
-        /*
-          this is the new responsive optimized comment image. It used the new HTML5 data-attribute to display comment gravatars on larger screens only. What this means is that on larger posts, mobile sites don't have a ton of requests for comment images. This makes load time incredibly fast! If you'd like to change it back, just replace it with the regular wordpress gravatar call:
-          echo get_avatar($comment,$size='32',$default='<path_to_url>' );
-        */
-        ?>
-
-        <?php printf(__( '<cite class="fn">%1$s</cite> %2$s', 'sepalandseedtheme' ), get_comment_author_link(), edit_comment_link(__( '(Edit)', 'sepalandseedtheme' ),'  ','') ) ?>
-        <time datetime="<?php echo comment_time('Y-m-j'); ?>"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>"><?php comment_time(__( 'F jS, Y', 'sepalandseedtheme' )); ?> </a></time>
-
+        <cite><?php echo get_comment_author_link();?></cite> commented on <time datetime="<?php echo comment_time('Y-m-j'); ?>"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>"><?php comment_time(__( 'F jS, Y', 'sepalandseedtheme' )); ?> </a></time>
+        <?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
       </header>
       <?php if ($comment->comment_approved == '0') : ?>
         <div class="alert alert-info">
@@ -269,179 +261,12 @@ function sepal_and_seed_comments( $comment, $args, $depth ) {
       <section class="comment_content cf">
         <?php comment_text() ?>
       </section>
-      <?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
+       <?php edit_comment_link('Edit/Delete');?>
     </article>
   <?php // </li> is added by WordPress automatically ?>
 <?php
 } // don't remove this bracket!
 
-
-// LOAD TGM
-require_once( 'library/class-tgm-plugin-activation.php' );
-
-add_action( 'tgmpa_register', 'tww_register_required_plugins' );
-
-function tww_register_required_plugins() {
-	/*
-	 * Array of plugin arrays. Required keys are name and slug.
-	 * If the source is NOT from the .org repo, then source is also required.
-	 */
-	$plugins = array(
-
-		// This is an example of how to include a plugin bundled with a theme.
-		// array(
-		// 	'name'               => 'TGM Example Plugin', // The plugin name.
-		// 	'slug'               => 'tgm-example-plugin', // The plugin slug (typically the folder name).
-		// 	'source'             => get_template_directory() . '/lib/plugins/tgm-example-plugin.zip', // The plugin source.
-		// 	'required'           => true, // If false, the plugin is only 'recommended' instead of required.
-		// 	'version'            => '', // E.g. 1.0.0. If set, the active plugin must be this version or higher. If the plugin version is higher than the plugin version installed, the user will be notified to update the plugin.
-		// 	'force_activation'   => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
-		// 	'force_deactivation' => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins.
-		// 	'external_url'       => '', // If set, overrides default API URL and points to an external URL.
-		// 	'is_callable'        => '', // If set, this callable will be be checked for availability to determine if a plugin is active.
-		// ),
-
-		// This is an example of how to include a plugin from an arbitrary external source in your theme.
-		// array(
-		// 	'name'         => 'TGM New Media Plugin', // The plugin name.
-		// 	'slug'         => 'tgm-new-media-plugin', // The plugin slug (typically the folder name).
-		// 	'source'       => 'https://s3.amazonaws.com/tgm/tgm-new-media-plugin.zip', // The plugin source.
-		// 	'required'     => true, // If false, the plugin is only 'recommended' instead of required.
-		// 	'external_url' => 'https://github.com/thomasgriffin/New-Media-Image-Uploader', // If set, overrides default API URL and points to an external URL.
-		// ),
-
-
-		// This is an example of how to include a plugin from a GitHub repository in your theme.
-		// This presumes that the plugin code is based in the root of the GitHub repository
-		// and not in a subdirectory ('/src') of the repository.
-		// array(
-		// 	'name'      => 'Adminbar Link Comments to Pending',
-		// 	'slug'      => 'adminbar-link-comments-to-pending',
-		// 	'source'    => 'https://github.com/jrfnl/WP-adminbar-comments-to-pending/archive/master.zip',
-		// ),
-
-		// This is an example of how to include a plugin from the WordPress Plugin Repository.
-		array(
-			'name'      => '(GA) Google Analytics',
-			'slug'      => 'ga-google-analytics',
-			'required'  => true,
-		),
-
-		// This is an example of the use of 'is_callable' functionality. A user could - for instance -
-		// have WPSEO installed *or* WPSEO Premium. The slug would in that last case be different, i.e.
-		// 'wordpress-seo-premium'.
-		// By setting 'is_callable' to either a function from that plugin or a class method
-		// `array( 'class', 'method' )` similar to how you hook in to actions and filters, TGMPA can still
-		// recognize the plugin as being installed.
-/*
-		array(
-			'name'        => 'WordPress SEO by Yoast',
-			'slug'        => 'wordpress-seo',
-			'is_callable' => 'wpseo_init',
-		),
-*/
-
-	);
-
-	/*
-	 * Array of configuration settings. Amend each line as needed.
-	 *
-	 * TGMPA will start providing localized text strings soon. If you already have translations of our standard
-	 * strings available, please help us make TGMPA even better by giving us access to these translations or by
-	 * sending in a pull-request with .po file(s) with the translations.
-	 *
-	 * Only uncomment the strings in the config array if you want to customize the strings.
-	 */
-	$config = array(
-		'id'           => 'tww',                 // Unique ID for hashing notices for multiple instances of TGMPA.
-		'default_path' => '',                      // Default absolute path to bundled plugins.
-		'menu'         => 'tgmpa-install-plugins', // Menu slug.
-		'has_notices'  => true,                    // Show admin notices or not.
-		'dismissable'  => false,                    // If false, a user cannot dismiss the nag message.
-		'dismiss_msg'  => '',                      // If 'dismissable' is false, this message will be output at top of nag.
-		'is_automatic' => false,                   // Automatically activate plugins after installation or not.
-		'message'      => '',                      // Message to output right before the plugins table.
-
-		/*
-		'strings'      => array(
-			'page_title'                      => __( 'Install Required Plugins', 'tww' ),
-			'menu_title'                      => __( 'Install Plugins', 'tww' ),
-			/* translators: %s: plugin name. * /
-			'installing'                      => __( 'Installing Plugin: %s', 'tww' ),
-			/* translators: %s: plugin name. * /
-			'updating'                        => __( 'Updating Plugin: %s', 'tww' ),
-			'oops'                            => __( 'Something went wrong with the plugin API.', 'tww' ),
-			'notice_can_install_required'     => _n_noop(
-				/* translators: 1: plugin name(s). * /
-				'This theme requires the following plugin: %1$s.',
-				'This theme requires the following plugins: %1$s.',
-				'tww'
-			),
-			'notice_can_install_recommended'  => _n_noop(
-				/* translators: 1: plugin name(s). * /
-				'This theme recommends the following plugin: %1$s.',
-				'This theme recommends the following plugins: %1$s.',
-				'tww'
-			),
-			'notice_ask_to_update'            => _n_noop(
-				/* translators: 1: plugin name(s). * /
-				'The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s.',
-				'The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s.',
-				'tww'
-			),
-			'notice_ask_to_update_maybe'      => _n_noop(
-				/* translators: 1: plugin name(s). * /
-				'There is an update available for: %1$s.',
-				'There are updates available for the following plugins: %1$s.',
-				'tww'
-			),
-			'notice_can_activate_required'    => _n_noop(
-				/* translators: 1: plugin name(s). * /
-				'The following required plugin is currently inactive: %1$s.',
-				'The following required plugins are currently inactive: %1$s.',
-				'tww'
-			),
-			'notice_can_activate_recommended' => _n_noop(
-				/* translators: 1: plugin name(s). * /
-				'The following recommended plugin is currently inactive: %1$s.',
-				'The following recommended plugins are currently inactive: %1$s.',
-				'tww'
-			),
-			'install_link'                    => _n_noop(
-				'Begin installing plugin',
-				'Begin installing plugins',
-				'tww'
-			),
-			'update_link' 					  => _n_noop(
-				'Begin updating plugin',
-				'Begin updating plugins',
-				'tww'
-			),
-			'activate_link'                   => _n_noop(
-				'Begin activating plugin',
-				'Begin activating plugins',
-				'tww'
-			),
-			'return'                          => __( 'Return to Required Plugins Installer', 'tww' ),
-			'plugin_activated'                => __( 'Plugin activated successfully.', 'tww' ),
-			'activated_successfully'          => __( 'The following plugin was activated successfully:', 'tww' ),
-			/* translators: 1: plugin name. * /
-			'plugin_already_active'           => __( 'No action taken. Plugin %1$s was already active.', 'tww' ),
-			/* translators: 1: plugin name. * /
-			'plugin_needs_higher_version'     => __( 'Plugin not activated. A higher version of %s is needed for this theme. Please update the plugin.', 'tww' ),
-			/* translators: 1: dashboard link. * /
-			'complete'                        => __( 'All plugins installed and activated successfully. %1$s', 'tww' ),
-			'dismiss'                         => __( 'Dismiss this notice', 'tww' ),
-			'notice_cannot_install_activate'  => __( 'There are one or more required or recommended plugins to install, update or activate.', 'tww' ),
-			'contact_admin'                   => __( 'Please contact the administrator of this site for help.', 'tww' ),
-
-			'nag_type'                        => '', // Determines admin notice type - can only be one of the typical WP notice classes, such as 'updated', 'update-nag', 'notice-warning', 'notice-info' or 'error'. Some of which may not work as expected in older WP versions.
-		),
-		*/
-	);
-
-	tgmpa( $plugins, $config );
-}
 
 /*
 This is a modification of a function found in the
@@ -451,10 +276,10 @@ can replace these fonts, change it in your scss files
 and be up and running in seconds.
 */
 function sepal_and_seed_fonts() {
-  wp_enqueue_style('googleFonts', '//fonts.googleapis.com/css?family=Montserrat:700|Open+Sans');
+  //wp_enqueue_style('googleFonts', '//fonts.googleapis.com/css?family=Open+Sans');
 }
 
-add_action('wp_enqueue_scripts', 'sepal_and_seed_fonts');
+//add_action('wp_enqueue_scripts', 'sepal_and_seed_fonts');
 
 // Add manual excerpt back to wp-admin default view
 add_filter('default_hidden_meta_boxes', 'be_hidden_meta_boxes', 10, 2);
@@ -475,75 +300,75 @@ function be_hidden_meta_boxes($hidden, $screen) {
 }
 
 // LOAD Custom Recent Posts Widget
-require_once( 'library/class-custom-recent-posts-widget.php' );
-
-add_action( 'widgets_init', create_function( '', 'register_widget( "Custom_Widget_Recent_Posts" );' ) );
+// require_once( 'library/class-custom-recent-posts-widget.php' );
+//
+// add_action( 'widgets_init', create_function( '', 'register_widget( "Custom_Widget_Recent_Posts" );' ) );
 
 function erin_custom_background_cb() {
     // $background is the saved custom image, or the default image.
     $background = set_url_scheme( get_background_image() );
- 
+
     // $color is the saved custom color.
     // A default has to be specified in style.css. It will not be printed here.
     $color = get_background_color();
- 
+
     if ( $color === get_theme_support( 'custom-background', 'default-color' ) ) {
         $color = false;
     }
- 
+
     if ( ! $background && ! $color ) {
         if ( is_customize_preview() ) {
             echo '<style type="text/css" id="custom-background-css"></style>';
         }
         return;
     }
- 
+
     $style = $color ? "background-color: #$color;" : '';
- 
+
     if ( $background ) {
-        $image = ' background-image: url("' . esc_url_raw( $background ) . '");';
- 
+        $image = ' background-image: url("' . esc_url_raw( $background ) . '"),linear-gradient(to top right,#fff , #eee, #bbb);';
+
         // Background Position.
         $position_x = get_theme_mod( 'background_position_x', get_theme_support( 'custom-background', 'default-position-x' ) );
         $position_y = get_theme_mod( 'background_position_y', get_theme_support( 'custom-background', 'default-position-y' ) );
- 
+
         if ( ! in_array( $position_x, array( 'left', 'center', 'right' ), true ) ) {
             $position_x = 'left';
         }
- 
+
         if ( ! in_array( $position_y, array( 'top', 'center', 'bottom' ), true ) ) {
             $position_y = 'top';
         }
- 
+
         $position = " background-position: $position_x $position_y;";
- 
+
         // Background Size.
         $size = get_theme_mod( 'background_size', get_theme_support( 'custom-background', 'default-size' ) );
- 
+
         if ( ! in_array( $size, array( 'auto', 'contain', 'cover' ), true ) ) {
             $size = 'auto';
         }
- 
+
         $size = " background-size: $size;";
- 
+
         // Background Repeat.
         $repeat = get_theme_mod( 'background_repeat', get_theme_support( 'custom-background', 'default-repeat' ) );
- 
+
         if ( ! in_array( $repeat, array( 'repeat-x', 'repeat-y', 'repeat', 'no-repeat' ), true ) ) {
             $repeat = 'repeat';
         }
- 
+
         $repeat = " background-repeat: $repeat;";
- 
+
         // Background Scroll.
         $attachment = get_theme_mod( 'background_attachment', get_theme_support( 'custom-background', 'default-attachment' ) );
- 
+
         if ( 'fixed' !== $attachment ) {
             $attachment = 'scroll';
         }
- 
+
         $attachment = " background-attachment: $attachment;";
- 
+
         $style .= $image . $position . $size . $repeat . $attachment;
     }
 ?>
@@ -556,7 +381,7 @@ function erin_custom_background_cb() {
 	}
 	var viewport = updateViewportDimensions();
 	if(viewport.width > 590){
-		var css = 'body.custom-background { <?php echo trim( $style ); ?> }',
+		var css = 'body.custom-background .searchbar-bottom,header[role="banner"]{ <?php echo trim( $style ); ?> }',
 		    head = document.head || document.getElementsByTagName('head')[0],
 		    style = document.createElement('style');
 		style.type = 'text/css';

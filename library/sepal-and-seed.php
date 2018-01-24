@@ -45,9 +45,9 @@ function sepal_and_seed_head_cleanup() {
 	// WP version
 	remove_action( 'wp_head', 'wp_generator' );
 	// remove WP version from css
-	add_filter( 'style_loader_src', 'sepal_and_seed_remove_wp_ver_css_js', 9999 );
+	// add_filter( 'style_loader_src', 'sepal_and_seed_remove_wp_ver_css_js', 9999 );
 	// remove Wp version from scripts
-	add_filter( 'script_loader_src', 'sepal_and_seed_remove_wp_ver_css_js', 9999 );
+	// add_filter( 'script_loader_src', 'sepal_and_seed_remove_wp_ver_css_js', 9999 );	
 
 } /* end bones head cleanup */
 
@@ -123,15 +123,10 @@ function sepal_and_seed_scripts_and_styles() {
   global $wp_styles; // call global $wp_styles variable to add conditional wrapper around ie stylesheet the WordPress way
 
   if (!is_admin()) {
-
-		// modernizr (without media query polyfill)
-		// wp_register_script( 'sepal-and-seed-modernizr', get_stylesheet_directory_uri() . '/library/js/libs/modernizr.custom.min.js', array(), '2.5.3', false );
-
-		// register main stylesheet
-		wp_register_style( 'sepal-and-seed-stylesheet', get_stylesheet_directory_uri() . '/library/css/style.min.css', array(), '', 'all' );
-
-		// ie-only style sheet
-		wp_register_style( 'sepal-and-seed-ie-only', get_stylesheet_directory_uri() . '/library/css/ie.css', array(), '' );
+	  
+  		// register main stylesheets
+		wp_register_style( 'sepal-and-seed-skeleton', get_stylesheet_directory_uri() . '/library/css/skeleton.css', array(), true, 'all' );
+		wp_register_style( 'sepal-and-seed-stylesheet', get_stylesheet_directory_uri() . '/library/css/style.min.css', array('sepal-and-seed-skeleton'), true, 'all' );
 
     // comment reply script for threaded comments
     if ( is_singular() AND comments_open() AND (get_option('thread_comments') == 1)) {
@@ -139,14 +134,10 @@ function sepal_and_seed_scripts_and_styles() {
     }
 
 		//adding scripts file in the footer
-		wp_register_script( 'sepal-and-seed-js', get_stylesheet_directory_uri() . '/library/js/scripts.js', '', '', true );
+		wp_register_script( 'sepal-and-seed-js', get_stylesheet_directory_uri() . '/library/js/scripts.js', array(), true, true );
 
 		// enqueue styles and scripts
-		wp_enqueue_script( 'sepal-and-seed-modernizr' );
-		wp_enqueue_style( 'sepal-and-seed-stylesheet' );
-		wp_enqueue_style( 'sepal-and-seed-ie-only' );
-
-		$wp_styles->add_data( 'sepal-and-seed-ie-only', 'conditional', 'lt IE 9' ); // add conditional wrapper around ie stylesheet
+		wp_enqueue_style( 'sepal-and-seed-stylesheet');
 
 		/*
 		I recommend using a plugin to call jQuery
@@ -170,7 +161,7 @@ function sepal_and_seed_theme_support() {
 	add_theme_support( 'post-thumbnails' );
 
 	// default thumb size
-	set_post_thumbnail_size(125, 125, true);
+	set_post_thumbnail_size(300, 300, true);
 
 	// wp custom background (thx to @bransonwerner for update)
 	add_theme_support( 'custom-background',
@@ -189,19 +180,19 @@ function sepal_and_seed_theme_support() {
 	// to add header image support go here: http://themble.com/support/adding-header-background-image-support/
 
 	// adding post format support
-	add_theme_support( 'post-formats',
-		array(
-			'aside',             // title less blurb
-			'gallery',           // gallery of images
-			'link',              // quick link to other site
-			'image',             // an image
-			'quote',             // a quick quote
-			'status',            // a Facebook like status update
-			'video',             // video
-			'audio',             // audio
-			'chat'               // chat transcript
-		)
-	);
+	// add_theme_support( 'post-formats',
+	// 	array(
+	// 		'aside',             // title less blurb
+	// 		'gallery',           // gallery of images
+	// 		'link',              // quick link to other site
+	// 		'image',             // an image
+	// 		'quote',             // a quick quote
+	// 		'status',            // a Facebook like status update
+	// 		'video',             // video
+	// 		'audio',             // audio
+	// 		'chat'               // chat transcript
+	// 	)
+	// );
 
 	// wp menus
 	add_theme_support( 'menus' );
