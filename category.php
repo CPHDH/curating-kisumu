@@ -11,9 +11,10 @@
 							<div class="container">
 
 								<?php
+								$cat = get_queried_object();
 								$args = array (
 									'post_type'=>'any',
-									'category_name' => single_term_title('',false)
+									'category_name' => $cat->slug
 								);
 								$posts = get_posts( $args );
 								if ($posts) :

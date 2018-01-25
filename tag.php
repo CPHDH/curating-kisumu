@@ -11,9 +11,10 @@
 							<div class="container">
 
 								<?php
+								$tag = get_queried_object();
 								$args = array (
 									'post_type'=>'any',
-									'tag' => single_term_title('',false)
+									'tag' => $tag->slug,
 								);
 								$posts = get_posts( $args );
 								if ($posts) :
