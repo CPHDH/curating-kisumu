@@ -27,6 +27,25 @@
 		<meta name="msapplication-TileImage" content="<?php echo get_template_directory_uri(); ?>/library/images/win8-tile-icon.png">
 		<meta name="theme-color" content="#fff">
 
+		<?php
+		// Social meta	
+		$meta_title = ( $post && !( is_home() || is_front_page() )) ? get_the_title($post->ID).' | '. get_bloginfo( 'name' ) : get_bloginfo( 'name' );
+		$meta_img = ( $post && has_post_thumbnail() ) ? get_the_post_thumbnail_url($post, 'large' ) : get_template_directory_uri().'/screenshot.png';
+		$meta_excerpt=get_bloginfo( 'description' );	
+		?>
+
+		<!-- FB Open Graph stuff -->
+		<meta property="og:title" content="<?php echo $meta_title;?>"/>
+		<meta property="og:image" content="<?php echo $meta_img;?>"/>
+		<meta property="og:site_name" content="<?php echo get_bloginfo( 'name' );?>"/>
+		<meta property="og:description" content="<?php echo $meta_excerpt;?>"/>
+		
+		<!-- Twitter Card stuff-->
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="<?php echo $meta_title;?>">
+		<meta name="twitter:description" content="<?php echo $meta_excerpt;?>">
+		<meta name="twitter:image" content="<?php echo $meta_img;?>">
+		<meta name="twitter:site" content="@curatingkisumu">  
 
 		<?php // wordpress head functions ?>
 		<?php wp_head(); ?>
