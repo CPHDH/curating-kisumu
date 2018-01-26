@@ -363,8 +363,8 @@ function erin_custom_background_cb() {
         // Background Scroll.
         $attachment = get_theme_mod( 'background_attachment', get_theme_support( 'custom-background', 'default-attachment' ) );
 
-        if ( 'fixed' !== $attachment ) {
-            $attachment = 'scroll';
+        if ( 'fixed' == $attachment ) {
+            $attachment = 'scroll'; // disallow fixed backgrounds, which don't work in iOS and are computationally-expensive
         }
 
         $attachment = " background-attachment: $attachment;";
