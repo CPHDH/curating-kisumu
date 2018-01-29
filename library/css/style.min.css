@@ -309,8 +309,7 @@ article p {
 }
 
 .curatescape-inline-image-outer {
-	flex-grow:1;
-	max-width:48%;
+	width:48%;
 }
 
 @media all and (max-width:650px) {
@@ -319,7 +318,8 @@ article p {
 	}
 	
 	.curatescape-inline-image-outer {
-		max-width:100%;
+		flex-grow: 1;
+		width:100%;
 	}
 }
 
