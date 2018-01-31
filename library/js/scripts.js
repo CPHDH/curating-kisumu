@@ -10,7 +10,7 @@ function updateViewportDimensions() {
 }
 var viewport = updateViewportDimensions();
 var article = document.querySelector('.single #content main article');
-var featuredImg = article.attributes['data-image'].value;
+var featuredImg = article ? article.attributes['data-image'].value : null;
 if(featuredImg && viewport.width > 590){
 	var css = '.single header[role="banner"]{background-image:url('+featuredImg+');}',
 	    head = document.head || document.getElementsByTagName('head')[0],
