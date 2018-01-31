@@ -321,6 +321,13 @@ article p {
 		flex-grow: 1;
 		width:100%;
 	}
+	
+}
+@media all and (max-width:840px) {
+	a.curatescape-inline-image{
+		background-size: contain;
+		background-color: #000;
+	}	
 }
 
 .curatescape-section-heading,.curatescape-inline-title {
