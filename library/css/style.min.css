@@ -484,8 +484,8 @@ p.credits {
 /* ICON FONT */
 @font-face {
 	font-family:'fontello';
-	src:url(../fonts/fontello/font/fontello.eot?17607568);
-	src:url(../fonts/fontello/font/fontello.eot?17607568#iefix) format("embedded-opentype"),url(../fonts/fontello/font/fontello.woff2?17607568) format("woff2"),url(../fonts/fontello/font/fontello.woff?17607568) format("woff"),url(../fonts/fontello/font/fontello.ttf?17607568) format("truetype"),url(../fonts/fontello/font/fontello.svg?17607568#fontello) format("svg");
+	src:url('../fonts/fontello/font/fontello.eot?17607568');
+	src:url('../fonts/fontello/font/fontello.eot?17607568#iefix') format("embedded-opentype"),url('../fonts/fontello/font/fontello.woff2?17607568') format("woff2"),url('../fonts/fontello/font/fontello.woff?17607568') format("woff"),url('../fonts/fontello/font/fontello.ttf?17607568') format("truetype"),url('../fonts/fontello/font/fontello.svg?17607568#fontello') format("svg");
 	font-weight:400;
 	font-style:normal;
 }
@@ -643,6 +643,14 @@ h3 a:hover {
 #commentform p label,#commentform p.comment-notes {
 	color:#ccc;
 }
+
+/* DISQUS */
+#disqus_thread{
+	margin: 0 auto;
+	max-width: 50em;
+	padding: 2em 2em 4em;
+}
+
 
 /*  PAGINATION */
 .pagination ul {
