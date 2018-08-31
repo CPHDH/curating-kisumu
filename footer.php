@@ -31,7 +31,7 @@
 			</div>
 		</div>
 
-		<p class="credits" style="text-align:center;" class="source-org copyright">&copy; <?php echo date('Y'); ?> <a href="http://maseno.ac.ke/index/" taget="_blank">Maseno University</a> and <a href="https://www.csuohio.edu/" taget="_blank">Cleveland State University</a>.<br>With support from the <a href="https://www.neh.gov/" taget="_blank">National Endowment for the Humanities</a><br></p>
+		<p class="credits" style="text-align:center;" class="source-org copyright">&copy; <?php echo date('Y'); ?> <a href="http://maseno.ac.ke/index/" taget="_blank">Maseno University</a> and <a href="https://www.csuohio.edu/" taget="_blank">Cleveland State University</a>.<br>With support from the <a href="https://www.neh.gov/" taget="_blank">National Endowment for the Humanities</a><br><br><strong><em>Visit the <a href="http://archive.macleki.org">Kisumu Archive</a> for more historic and contemporary images.</em></strong><br></p>
 
 	</footer>
 

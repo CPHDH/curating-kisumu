@@ -393,8 +393,17 @@ function erin_custom_background_cb() {
 		head.appendChild(style);
 	}
 </script>
-
-<?php
+<?php	
 }
+
+//Allow Contributors to Add Media
+if ( current_user_can('contributor') && !current_user_can('upload_files') ){
+	add_action('admin_init', 'allow_contributor_uploads');
+}
+
+function allow_contributor_uploads() {
+	$contributor = get_role('contributor');
+	$contributor->add_cap('upload_files');
+}	
 
 /* DON'T DELETE THIS CLOSING TAG */ ?>

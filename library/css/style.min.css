@@ -51,8 +51,10 @@ h2.curatescape-section-heading {
 header[role="banner"] {
 }
 
-#header-padding {
-	padding-bottom:65vh;
+@media all and (min-width:590px){
+	.home #header-padding, .single #header-padding {
+		padding-bottom:65vh;
+	}
 }
 
 #header-content {
@@ -117,6 +119,7 @@ nav.main-menu ul li a {
 	color:#222;
 	font-weight:600;
 	text-transform:uppercase;
+	text-shadow: 1px 1px 1px #fff;
 }
 
 nav .searchform {
@@ -126,7 +129,7 @@ nav .searchform {
 }
 
 nav .searchform input {
-	width:18em;
+	width:18.75em;
 	max-width:100%;
 }
 
