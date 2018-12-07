@@ -39,12 +39,14 @@ a:hover {
 }
 
 /*  BORDER */
-#intro,#content main.results h1,h2.curatescape-section-heading,.single #content main>article>header,.page #content main article h1,body.error404 #content main article>header >h1,.searchbar-bottom,.home-tours-outer {
+#intro,#content main.results h1,h2.curatescape-section-heading,.single #content main>article>header,.page #content main article h1,body.error404 #content main article>header >h1,.searchbar-bottom,.subject-scroller,.home-tours-outer {
 	border-bottom:8px solid transparent;
 	-o-border-image:-o-linear-gradient(left,crimson,red 33.333%,darkgoldenrod 33.333%,goldenrod 66.666%,#090 66.666%,forestgreen 100%) 1;
 	   -webkit-border-image:-webkit-gradient(linear,left top, right top,from(crimson),color-stop(33.333%, red),color-stop(33.333%, darkgoldenrod),color-stop(66.666%, goldenrod),color-stop(66.666%, #090),to(forestgreen)) 1;
 	        border-image:-webkit-gradient(linear,left top, right top,from(crimson),color-stop(33.333%, red),color-stop(33.333%, darkgoldenrod),color-stop(66.666%, goldenrod),color-stop(66.666%, #090),to(forestgreen)) 1;
 	   border-image:linear-gradient(to right,crimson,red 33.333%,darkgoldenrod 33.333%,goldenrod 66.666%,#090 66.666%,forestgreen 100%) 1;
+	border-left-width: 0;
+	border-right-width: 0;
 	border-image-width:0 0 8px 0;
 }
 /* DOTS */
@@ -63,6 +65,7 @@ h2.curatescape-section-heading {
 
 /* HEADER */
 header[role="banner"] {
+	background: #777;
 }
 
 @media all and (min-width:590px){
@@ -72,7 +75,6 @@ header[role="banner"] {
 }
 
 #header-content {
-	display: -ms-flexbox;
 	display:-webkit-box;
 	display:flex;
 	-ms-flex-line-pack:center;
@@ -167,12 +169,16 @@ nav .searchform button {
 	
 	nav .searchform input {
 		width:100%;
+		margin-bottom: 0;
 	}
 	
-	nav.main-menu,nav .searchform {
-		margin-top:1em;
+	nav.main-menu{
+		margin-top: 1em;
 	}
-	
+	nav .searchform {
+		margin-top:0;
+		
+	}
 	nav.main-menu ul {
 		text-align:center;
 	}
@@ -222,6 +228,7 @@ nav .searchform button {
 	-webkit-box-shadow: 0 0 5em #000 inset;
 	        box-shadow: 0 0 5em #000 inset;
 	height: 55vh;
+	min-height: 200px;
 	position: relative;
 }
 .home-section h2 a{
@@ -252,9 +259,9 @@ nav .searchform button {
 
 .view-tours-link-container{
 	margin: 1em 2em .5em;
-	-webkit-box-flex: 1;
-	    -ms-flex: 1;
-	        flex: 1;
+	-webkit-box-flex: 1 0 0%;
+	    -ms-flex: 1 0 0%;
+	        flex: 1 0 0%;
 	min-height: 4em;
 	position: relative;
 }
@@ -264,9 +271,9 @@ nav .searchform button {
 }
 
 ul.tour-locations{
-	-webkit-box-flex: 1;
-	    -ms-flex: 1;
-	        flex: 1;
+	-webkit-box-flex: 1 0 0%;
+	    -ms-flex: 1 0 0%;
+	        flex: 1 0 0%;
 	-ms-flex-positive: 1;
 	    flex-grow: 1;
 	padding: 0 0;
@@ -410,9 +417,9 @@ ul.tour-locations li{
 		        flex-direction: column;
 	}	
 	.tour-locations-container{
-		-webkit-box-flex: 1;
-		    -ms-flex: 1;
-		        flex: 1;
+		-webkit-box-flex: 1 0 0%;
+		    -ms-flex: 1 0 0%;
+		        flex: 1 0 0%;
 	}	
 	.home-tours article:nth-child(n+3){
 		width: 100%;
@@ -453,9 +460,9 @@ ul.tour-locations li{
 		        flex-direction: column;		
 	}
 	.tour-locations-container{
-		-webkit-box-flex: 1;
-		    -ms-flex: 1;
-		        flex: 1;
+		-webkit-box-flex: 1 0 0%;
+		    -ms-flex: 1 0 0%;
+		        flex: 1 0 0%;
 	}
 }
 
@@ -566,7 +573,7 @@ footer.footer-main {
 footer .searchbar-bottom {
 	color:#222;
 	background-size:cover;
-	background-color:#fff;
+	background-color:#555;
 	padding:16em 0;
 }
 
@@ -881,5 +888,32 @@ h3 a:hover {
 	
 	footer .searchbar-bottom {
 		padding:1em 0;
+	}
+}
+/* IE-10-11-CRAP */
+@media all and (-ms-high-contrast:none){
+	.tour-locations-container{
+		min-height: 70vh;
+	}
+	.view-tours-link-container,
+	.view-tours-link-container a{
+		float: right;
+		clear: left;
+	}
+}
+@media all and (-ms-high-contrast:none) and (max-width:1200px){
+	.home-tours article:nth-child(n+3) .view-tours-link-container a{
+		position: absolute;
+		left: 42.5%;
+	}	
+}
+@media all and (-ms-high-contrast:none) and (max-width:800px){
+	.tour-locations-container{
+		flex: 0 0 0%;
+		position: relative;
+	}
+	.view-tours-link-container{
+		position: absolute;
+		bottom: 0;
 	}
 }
