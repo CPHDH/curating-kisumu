@@ -79,5 +79,30 @@
 			</div>
 		</section>
 		</div>
+		<!-- Story Categories (Subjects) -->
+		<!--
+		<section class="home-section">
+			<?php 
+			/*
+			$subjects = get_terms( array(
+			    'taxonomy' => 'story_subjects',
+			    'hide_empty' => true,
+			    'sort_by' =>'slug',
+			) );
+			$html=null;
+			foreach($subjects as $subject){
+				$url=get_term_link( $subject );
+				$label=$subject->name;
+				$html.= '<a class="button" href="'.$url.'">'.$label.'</a>';
+			}
+			*/			
+			?>
+			<div class="subject-scroller">
+				<div class="fade-right">&larr;</div>
+				<div class="story-subjects"><?php// echo $html;?></div>
+				<div class="fade-left">&rarr;</div>
+			</div>
+		</section>
+		-->
 	</main>
 <?php get_footer(); ?>
