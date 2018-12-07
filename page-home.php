@@ -18,7 +18,7 @@
 		<!-- Intro -->
 		<section class="home-section">
 			<article id="intro">
-				<div class="" style="padding:0 5%;">
+				<div>
 				<!-- <h2>Welcome</h2> -->
 				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 					<?php the_content();?>
@@ -26,85 +26,58 @@
 						<p>Add some content!</p>
 				<?php endif; ?>
 				<?php wp_reset_postdata(); ?>
-				<!-- <div class="home-social">
-					<a target="_blank" href="https://www.facebook.com/curatingkisumu/"><i class="icon-facebook"></i></a>
-					<a target="_blank" href="https://twitter.com/curatingkisumu"><i class="icon-twitter"></i></a>
-					<a target="_blank" href="https://www.youtube.com/channel/UCiHA8Vz7Cwlpdy7KkZLXCKw"><i class="icon-youtube-play"></i></a>
-				</div> -->
 				</div>
 			</article>
 		</section>
 
-		<!-- Stories -->
-		<section class="home-section container">
-			<h2>Recent Stories</h2>
-			<div class="home-stories">
-
-				<?php
-				$args = array(
-					'posts_per_page' => 3,
-					'post_type' => 'stories',
-				);
-				$the_query = new WP_Query( $args );
-				?>
-				<?php if ($the_query->have_posts()) : while ($the_query->have_posts()) : $the_query->the_post(); ?>
-				<?php $thumbnail = has_post_thumbnail( $post->ID ) ? wp_get_attachment_url( get_post_thumbnail_id($post->ID), 'medium' ) : 0;?>
-				<article id="post-<?php the_ID(); ?>" <?php post_class( 'cf' ); ?> role="article">
-					<div class="home-article-type">Story</div>
-					<a href="<?php the_permalink() ?>" class="home-post-image" style="background-image:url(<?php echo $thumbnail;?>);"></a>
-					<h4><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h4>
-				</article>
-				<?php endwhile; ?>
-				<?php else : ?>
-					<article>
-						<div class="home-article-type">Error</div>
-						<h4><?php _e( 'Oops, Stories Not Found!', 'sepalandseedtheme' ); ?></h4>
-					</article>
-				<?php endif; ?>
-				<a class="button" style="width:100%;text-align:center" href="/stories">Browse Stories</a>
-				<?php wp_reset_postdata(); ?>
-			</div>
-		</section>
-
-		<!-- Map -->
-		<section class="home-section">
-			<div class="home-map">
-			<!-- <div class="home-article-type" style="text-align:center">Stories Map</div> -->
-				<?php echo do_shortcode('[curatescape_global_map]', false );?>
-			</div>
-		</section>
 
 		<!-- Tours -->
 		<div class="home-tours-outer">
-		<section class="home-section container">
-			<h2>Recent Tours</h2>
+		<section class="home-section">
 			<div class="home-tours">
 				<?php
 				$args = array(
-					'posts_per_page' => 3,
+					'posts_per_page' => 6,
 					'post_type' => 'tours',
 				);
 				$the_query = new WP_Query( $args );
 				?>
 				<?php if ($the_query->have_posts()) : while ($the_query->have_posts()) : $the_query->the_post(); ?>
 				<?php $thumbnail = has_post_thumbnail( $post->ID ) ? wp_get_attachment_url( get_post_thumbnail_id($post->ID), 'medium' ) : 0;?>
+				<?php $tour_permalink = get_the_permalink();?>
+				<?php $tour_title = get_the_title();?>
 				<article id="post-<?php the_ID(); ?>" <?php post_class( 'cf' ); ?> role="article">
-					<div class="home-article-type">Tour</div>
-					<!-- <a href="<?php the_permalink() ?>" class="home-post-image" style="background-image:url(<?php //echo $thumbnail;?>);background-color:#b48416;"></a> -->
-					<h4><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h4>
+					<div class="home-post-image" style="background-image:url(<?php echo $thumbnail;?>);">
+						<h2><a href="<?php echo $tour_permalink ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php echo $tour_title; ?></a></h2>
+					</div>
+					<div class="tour-locations-container">
+					<?php
+					if($locations = $post->tour_locations){
+						$locations=explode(',',$locations);
+						$html=null;
+						foreach(array_slice($locations,0,3) as $id){
+							$location=get_post( $id );
+							$html.= '<li class="tour-location"><h3>'.
+							'<a href="'.get_the_permalink( $location ).'">'.
+							get_the_title( $location ).curatescape_subtitle( $location ).
+							'</a></h3></li>';
+						}
+						echo '<ul class="tour-locations">'.$html.'</ul>';
+					}
+					echo '<div class="view-tours-link-container"><a class="button button-primary" href="'.$tour_permalink.'">View all</a></div>';
+					?>
+					</div>
 				</article>
 				<?php endwhile; ?>
 				<?php else : ?>
 					<article>
 						<div class="home-article-type">Error</div>
-						<h4><?php _e( 'Oops, Tours Not Found!', 'sepalandseedtheme' ); ?></h4>
+						<h2><?php _e( 'Oops, Tours Not Found!', 'sepalandseedtheme' ); ?></h2>
 					</article>
 				<?php endif; ?>
 				<?php wp_reset_postdata(); ?>
-				<a class="button" style="width:100%;text-align:center" href="/tours">Browse Tours</a>
 			</div>
 		</section>
 		</div>
-
 	</main>
 <?php get_footer(); ?>
