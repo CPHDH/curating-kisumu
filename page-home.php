@@ -43,38 +43,50 @@
 				$the_query = new WP_Query( $args );
 				?>
 				<?php if ($the_query->have_posts()) : while ($the_query->have_posts()) : $the_query->the_post(); ?>
-				<?php $thumbnail = has_post_thumbnail( $post->ID ) ? wp_get_attachment_url( get_post_thumbnail_id($post->ID), 'medium' ) : 0;?>
-				<?php $tour_permalink = get_the_permalink();?>
-				<?php $tour_title = get_the_title();?>
-				<article id="post-<?php the_ID(); ?>" <?php post_class( 'cf' ); ?> role="article">
-					<div class="home-post-image" style="background-image:url(<?php echo $thumbnail;?>);">
-						<h2><a href="<?php echo $tour_permalink ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php echo $tour_title; ?></a></h2>
-					</div>
-					<div class="tour-locations-container">
-					<?php
-					if($locations = $post->tour_locations){
-						$locations=explode(',',$locations);
-						$html=null;
-						foreach(array_slice($locations,0,3) as $id){
-							$location=get_post( $id );
-							$html.= '<li class="tour-location"><h3>'.
-							'<a href="'.get_the_permalink( $location ).'">'.
-							get_the_title( $location ).curatescape_subtitle( $location ).
-							'</a></h3></li>';
+					<?php $thumbnail = has_post_thumbnail( $post->ID ) ? wp_get_attachment_url( get_post_thumbnail_id($post->ID), 'medium' ) : 0;?>
+					<?php $tour_permalink = get_the_permalink();?>
+					<?php $tour_title = get_the_title();?>
+					<article id="post-<?php the_ID(); ?>" <?php post_class( 'cf' ); ?> role="article">
+						<div class="home-post-image" style="background-image:url(<?php echo $thumbnail;?>);">
+							<h2><a href="<?php echo $tour_permalink ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php echo $tour_title; ?></a></h2>
+						</div>
+						<div class="tour-locations-container">
+						<?php
+						if($locations = $post->tour_locations){
+							$locations=explode(',',$locations);
+							$html=null;
+							foreach(array_slice($locations,0,3) as $id){
+								$location=get_post( $id );
+								$html.= '<li class="tour-location"><h3>'.
+								'<a href="'.get_the_permalink( $location ).'">'.
+								get_the_title( $location ).curatescape_subtitle( $location ).
+								'</a></h3></li>';
+							}
+							echo '<ul class="tour-locations">'.$html.'</ul>';
 						}
-						echo '<ul class="tour-locations">'.$html.'</ul>';
-					}
-					echo '<div class="view-tours-link-container"><a class="button button-primary" href="'.$tour_permalink.'">View all</a></div>';
-					?>
-					</div>
-				</article>
-				<?php endwhile; ?>
-				<?php else : ?>
-					<article>
-						<div class="home-article-type">Error</div>
-						<h2><?php _e( 'Oops, Tours Not Found!', 'sepalandseedtheme' ); ?></h2>
+						echo '<div class="view-tours-link-container"><a class="button button-primary" href="'.$tour_permalink.'">View all</a></div>';
+						?>
+						</div>
 					</article>
+					<?php endwhile; ?>
+					<?php else : ?>
+						<article>
+							<div class="home-article-type">Error</div>
+							<h2><?php _e( 'Oops, Tours Not Found!', 'sepalandseedtheme' ); ?></h2>
+						</article>
 				<?php endif; ?>
+					<article <?php post_class( 'cf' ); ?> role="article">
+						<div class="home-post-image" style="background-image:url(<?php echo get_template_directory_uri(); ?>/library/images/map.jpg);">
+							<h2><a href="/map" rel="bookmark" title="Map">Story Map</a></h2>
+						</div>
+						<div class="tour-locations-container">
+							<ul class="tour-locations">
+							<li class="tour-location"><h3><a href="/map">Browse Stories by Location</a></h3><br><p><strong>Macleki</strong> is a location-based project. Each of the stories on this site are assigned geolocation coordinates on the interactive map. Story locations are determined based on how each author interprets their story. For stories about buildings, districts, historic sites and other topics having a discrete location, the coordinates represent either the current location, or a past location in the event that the subject is no longer found in the physical landscape. Some thematic stories do not have a discrete location and are thus placed in an area where the story is deemed by the author to have the most geographic relevance. </p></li>
+							<div class="view-tours-link-container"><a class="button button-primary" href="/map">View Map</a></div>
+							</ul>
+						</div>
+					</article>
+					
 				<?php wp_reset_postdata(); ?>
 			</div>
 		</section>
