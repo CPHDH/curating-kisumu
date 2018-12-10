@@ -47,7 +47,10 @@
 								      </section>
 
 								      <footer class="article-footer">
-								        <?php the_tags( '<!--h2 class="curatescape-section-heading curatescape-section-heading-related-resources">Tags</h2--><ul class="tags"><li class="button">', '</li><li class="button">', '</li></ul>' ); ?>
+									    <ul class="tags">
+										<?php the_terms(get_the_ID(),'story_subjects', '<li class="button button-primary">', '</li><li class="button button-primary">', '</li>' ); ?>
+								        <?php the_tags( '<li class="button">', '</li><li class="button">', '</li>' ); ?>
+								        </ul>
 								      </footer>
 
 								    </div>
