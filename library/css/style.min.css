@@ -7,6 +7,10 @@ body {
 	background-color:#fff;
 }
 
+select{
+	max-width: 100%;
+}
+
 a {
 	color:#73A049;
 }
@@ -17,6 +21,28 @@ a:hover {
 
 #content.container {
 	padding-top:4em;
+}
+.button{
+	color: #73A049;
+	border-color: #73A049;
+}
+.button:hover{
+	color:#b48416;
+	border-color:#b48416
+}
+.button a{
+	text-decoration: none;
+}
+.button.button-primary{
+	border-color: #73A049;
+	background-color: #73A049;
+}
+.button.button-primary:hover{
+	border-color:#b48416;
+	background-color: #b48416;
+}
+.button.button-primary a{
+	color: #fff;
 }
 
 #content main.results>h1,.single #content main>article>header,.page #content main article>header>h1,body.error404 #content main article>header >h1 {
@@ -29,7 +55,7 @@ a:hover {
 }
 
 #content main.results h1,.page #content main article h1,body.error404 #content main article>header > h1 {
-	padding:2em 5%;
+	padding:1em 5%;
 	margin-bottom:2em;
 }
 
@@ -307,43 +333,38 @@ ul.tour-locations li{
 	padding: 1.25em 2em .5em;
 	margin: 0;
 }
-.home-tours article:nth-child(n+2) .tour-locations-container{
+ul.tour-locations li p{
+	color: #fafafa;
+	font-size: 1.1em;
+}
+.home-tours article:nth-child(3n+2) .tour-locations-container{
 	background: #333;
 }
-.home-tours article:nth-child(n+3) .tour-locations-container{
+.home-tours article:nth-child(3n+3) .tour-locations-container{
 	background: #111;
 }
-.home-tours article:nth-child(n+4) .tour-locations-container{
-	background: #111;
-}
-.home-tours article:nth-child(n+5) .tour-locations-container{
-	background: #333;
-}
-.home-tours article:nth-child(n+6) .tour-locations-container{
-	background: #555;
-}
-.home-tours article:nth-child(n+1) .home-post-image{
+.home-tours article:nth-child(3n+1) .home-post-image{
 	background-color: crimson;
 	background-image: -webkit-gradient(linear,left top, right top,from(crimson),to(red));
 	background-image: -webkit-linear-gradient(left,crimson,red 100%);
 	background-image: -o-linear-gradient(left,crimson,red 100%);
 	background-image: linear-gradient(to right,crimson,red 100%);
 }
-.home-tours article:nth-child(n+2) .home-post-image{
+.home-tours article:nth-child(3n+2) .home-post-image{
 	background-color: darkgoldenrod;
 	background-image: -webkit-gradient(linear,left top, right top,from(goldenrod),to(darkgoldenrod));
 	background-image: -webkit-linear-gradient(left,goldenrod,darkgoldenrod 100%);
 	background-image: -o-linear-gradient(left,goldenrod,darkgoldenrod 100%);
 	background-image: linear-gradient(to right,goldenrod,darkgoldenrod 100%);
 }
-.home-tours article:nth-child(n+3) .home-post-image{
+.home-tours article:nth-child(3n+3) .home-post-image{
 	background-color: forestgreen;
 	background-image: -webkit-gradient(linear,left top, right top,from(forestgreen),to(green));
 	background-image: -webkit-linear-gradient(left,forestgreen,green 100%);
 	background-image: -o-linear-gradient(left,forestgreen,green 100%);
 	background-image: linear-gradient(to right,forestgreen,green 100%);	
 }
-.home-tours article:nth-child(n+1) .button.button-primary{
+.home-tours article:nth-child(3n+1) .button.button-primary{
 	border-color: crimson;
 	background-color: crimson;
 	background-image: -webkit-gradient(linear,left top, right top,from(crimson),to(red));
@@ -351,7 +372,7 @@ ul.tour-locations li{
 	background-image: -o-linear-gradient(left,crimson,red 100%);
 	background-image: linear-gradient(to right,crimson,red 100%);
 }
-.home-tours article:nth-child(n+2) .button.button-primary{
+.home-tours article:nth-child(3n+2) .button.button-primary{
 	border-color: darkgoldenrod;
 	background-color: darkgoldenrod;
 	background-image: -webkit-gradient(linear,left top, right top,from(goldenrod),to(darkgoldenrod));
@@ -359,7 +380,7 @@ ul.tour-locations li{
 	background-image: -o-linear-gradient(left,goldenrod,darkgoldenrod 100%);
 	background-image: linear-gradient(to right,goldenrod,darkgoldenrod 100%);	
 }
-.home-tours article:nth-child(n+3) .button.button-primary{
+.home-tours article:nth-child(3n+3) .button.button-primary{
 	border-color: forestgreen;
 	background-color: forestgreen;
 	background-image: -webkit-gradient(linear,left top, right top,from(forestgreen),to(green));
@@ -368,7 +389,7 @@ ul.tour-locations li{
 	background-image: linear-gradient(to right,forestgreen,green 100%);	
 }
 
-.home-tours article:nth-child(n+1) .tour-locations-container{
+.home-tours article:nth-child(3n+1) .tour-locations-container{
 	border-top: 8px solid crimson;
 	-webkit-border-image: -webkit-gradient(linear,left top, right top,from(crimson),to(red)) 1;
 	-webkit-border-image: -webkit-linear-gradient(left,crimson,red 100%) 1;
@@ -377,7 +398,7 @@ ul.tour-locations li{
 	        border-image: linear-gradient(to right,crimson,red 100%) 1;
 	border-image-width:8px 0 0 0;
 }
-.home-tours article:nth-child(n+2) .tour-locations-container{
+.home-tours article:nth-child(3n+2) .tour-locations-container{
 	border-top: 8px solid darkgoldenrod;
 	-webkit-border-image: -webkit-gradient(linear,left top, right top,from(goldenrod),to(darkgoldenrod)) 1;
 	-webkit-border-image: -webkit-linear-gradient(left,goldenrod,darkgoldenrod 100%) 1;
@@ -386,7 +407,7 @@ ul.tour-locations li{
 	        border-image: linear-gradient(to right,goldenrod,darkgoldenrod 100%) 1;
 	border-image-width:8px 0 0 0;
 }
-.home-tours article:nth-child(n+3) .tour-locations-container{
+.home-tours article:nth-child(3n+3) .tour-locations-container{
 	border-top: 8px solid forestgreen;
 	-webkit-border-image: -webkit-gradient(linear,left top, right top,from(forestgreen),to(green)) 1;
 	-webkit-border-image: -webkit-linear-gradient(left,forestgreen,green 100%) 1;
@@ -420,23 +441,7 @@ ul.tour-locations li{
 		-webkit-box-flex: 1 0 0%;
 		    -ms-flex: 1 0 0%;
 		        flex: 1 0 0%;
-	}	
-	.home-tours article:nth-child(n+3){
-		width: 100%;
-	}
-	.home-tours article:nth-child(n+3) ul.tour-locations{
-		text-align: center;
-	}
-	.home-tours article:nth-child(n+3) .view-tours-link-container{
-		margin: 2em auto .5em;
-	}
-	.home-tours article:nth-child(n+3) .view-tours-link-container a{
-		position: inherit;
-	}
-	.home-tours article:nth-child(n+3) ul.tour-locations li.tour-location h3:after{
-		max-width: 65%;
-		margin: 0 auto
-	}	
+	}		
 }
 @media all and (min-width: 1200px ){
 	.home-tours{
@@ -707,6 +712,39 @@ p.credits {
 }
 
 /* ARCHIVES */
+.terms-list-container{
+	margin-top: -2em;
+}
+.terms-list-label{
+	background: #f2f2f2;
+	padding:.5em 1em;
+	font-weight: bold
+}
+.terms-list{
+	-webkit-columns:1;
+	        columns:1;
+	background: #f2f2f2;
+	background-image: -webkit-gradient(linear,left top, right top,from(#f2f2f2),color-stop(80%, #eaeaea));
+	background-image: -webkit-linear-gradient(left,#f2f2f2,#eaeaea 80%);
+	background-image: -o-linear-gradient(left,#f2f2f2,#eaeaea 80%);
+	background-image: linear-gradient(to right,#f2f2f2,#eaeaea 80%);
+	padding:1em 1em 1em 1em;
+	margin: 0 0 3em 0;
+	list-style-type: none;
+	border-bottom: 1px solid #eaeaea;
+}
+@media all and (min-width:400px){
+	.terms-list{
+	-webkit-columns:2;
+	        columns:2;
+	}
+}
+@media all and (min-width:700px){
+	.terms-list{
+	-webkit-columns:3;
+	        columns:3;
+	}
+}
 #content main.results {
 	padding-bottom:8em;
 }
@@ -893,19 +931,15 @@ h3 a:hover {
 /* IE-10-11-CRAP */
 @media all and (-ms-high-contrast:none){
 	.tour-locations-container{
-		min-height: 70vh;
+		min-height: 75vh;
 	}
 	.view-tours-link-container,
 	.view-tours-link-container a{
+/*
 		float: right;
 		clear: left;
+*/
 	}
-}
-@media all and (-ms-high-contrast:none) and (max-width:1200px){
-	.home-tours article:nth-child(n+3) .view-tours-link-container a{
-		position: absolute;
-		left: 42.5%;
-	}	
 }
 @media all and (-ms-high-contrast:none) and (max-width:800px){
 	.tour-locations-container{
