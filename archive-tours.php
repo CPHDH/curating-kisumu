@@ -31,12 +31,6 @@
 
 										<h3><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
 
-
-									</header>
-
-									<section class="entry-content cf">
-
-										<?php the_excerpt(); ?>
 										<p class="byline entry-meta vcard">
 								        <?php // theme support for "authors" custom field
 								        if ( $string=get_post_meta(get_the_ID(), 'authors', true) ) {
@@ -61,6 +55,12 @@
 															'<span class="entry-author author" itemprop="author" itemscope itemptype="http://schema.org/Person">' . $auth . '</span>'
 												); ?>
 										</p>
+									</header>
+
+									<section class="entry-content cf">
+
+										<?php the_excerpt(); ?>
+
 									</section>
 
 

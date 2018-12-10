@@ -23,6 +23,16 @@
 						<h1 class="archive-title"><?php post_type_archive_title(); ?></h1>
 
 						<div class="container">
+							
+							<aside class="terms-list-container">
+								<span class="terms-list-label">Subjects</span>
+								<div class="terms-list">
+								<?php wp_list_categories( array('taxonomy' => 'story_subjects','hide_empty' => true,'title_li'=>''));?>
+								</div>
+							</aside>
+							
+							<div>
+									
 							<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
 							<article id="post-<?php the_ID(); ?>" <?php post_class( 'cf' ); ?> role="article">
@@ -31,12 +41,7 @@
 
 									<h3><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
 
-								</header>
-
-								<section class="entry-content cf">
-
-									<?php the_excerpt(); ?>
-
+									
 									<?php // theme support for "authors" custom field
 									if ( $string=get_post_meta(get_the_ID(), 'authors', true) ) {
 									$auth=wp_kses($string,array(
@@ -63,6 +68,12 @@
 										'<span class="entry-author author" itemprop="author" itemscope itemptype="http://schema.org/Person">' . $auth . '</span>'
 									); ?>
 									</p>
+								</header>
+
+								<section class="entry-content cf">
+
+									<?php the_excerpt(); ?>
+
 								</section>
 
 
@@ -87,6 +98,7 @@
 									</article>
 
 							<?php endif; ?>
+							</div>
 						</div>
 						</main>
 

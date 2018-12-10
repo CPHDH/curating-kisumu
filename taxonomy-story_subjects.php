@@ -6,7 +6,7 @@
 
 						<main id="main" class="results" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/Blog">
 
-							<h1 class="archive-title">Archive</h1>
+							<h1 class="archive-title"><?php single_tag_title('Subject: ',true);?></h1>
 
 							<div class="container">
 
