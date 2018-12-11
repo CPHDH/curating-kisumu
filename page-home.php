@@ -89,6 +89,35 @@
 					
 				<?php wp_reset_postdata(); ?>
 			</div>
+			<figure class="home-tag-clouds">
+				<?php $args = array( 
+					'taxonomy'=> array('story_subjects'), 
+					'echo'=> true,
+					'show_count'=> 0,
+					'orderby'=> 'count', 
+					'order'=>'DESC',
+					'smallest'=>1, 
+					'largest'=> 2.2,
+					'unit'=> 'em', 
+				); ?>	
+				<span>		   
+				<?php wp_tag_cloud( $args ); ?>
+				</span>
+				<?php $args = array( 
+					'taxonomy'=> array('post_tag'), 
+					'echo'=> true,
+					'show_count'=> 0,
+					'orderby'=> 'count', 
+					'order'=>'DESC',
+					'smallest'=>0.85, 
+					'largest'=> 2,
+					'unit'=> 'em', 	
+				); ?>			   
+				<span>		   
+				<?php wp_tag_cloud( $args ); ?>
+				</span>
+			</figure>		
+			
 		</section>
 		</div>
 		<!-- Story Categories (Subjects) -->

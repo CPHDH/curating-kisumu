@@ -470,8 +470,26 @@ ul.tour-locations li p{
 		        flex: 1 0 0%;
 	}
 }
-
-
+.home-tag-clouds{
+	padding:0em;
+}
+.home-tag-clouds a{
+	display: inline-block;
+	padding-right: .15em;
+}
+.home-tag-clouds > span:nth-child(even) a{
+	color:#b48416;
+}
+.home-tag-clouds > span:nth-child(even) a:hover{
+	color:#73A049;
+}
+.home-tag-clouds a.tag-link-position-1,
+.home-tag-clouds a.tag-link-position-2,
+.home-tag-clouds a.tag-link-position-3,
+.home-tag-clouds a.tag-link-position-4,
+.home-tag-clouds a.tag-link-position-5{
+	font-weight: bold;
+}
 
 /* STORIES */
 .curatescape-subtitle {
