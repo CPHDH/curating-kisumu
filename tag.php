@@ -13,6 +13,7 @@
 								<?php
 								$tag = get_queried_object();
 								$args = array (
+									'numberposts'=>-1,
 									'post_type'=>'any',
 									'tag' => $tag->slug,
 								);
